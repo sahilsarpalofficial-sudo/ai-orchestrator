@@ -1,10 +1,19 @@
-from app.agents.math_agent import MathAgent
+from app.orchestration.router import Router
 
 
 class Runner:
     def __init__(self) -> None:
-        self.agent = MathAgent()
+        self.router = Router()
 
     def execute(self, task):
-        return self.agent.run(task)
+        agent = self.router.select_agent(task)
+        if not agent:
+            return {"error": "No suitable agent found"}
+
+        result = agent.run(task)
+
+        return {
+            "agent": agent.name,
+            "result": result,
+        }
 

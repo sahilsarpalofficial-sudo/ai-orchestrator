@@ -1,12 +1,10 @@
-from typing import List
+from typing import List, Union
 
 from pydantic import BaseModel
 
 
 class TaskRequest(BaseModel):
-    task: List[float]
+    task: Union[str, List[float]]
 
 
-class TaskResponse(BaseModel):
-    result: float
 
