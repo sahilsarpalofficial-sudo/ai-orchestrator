@@ -1,5 +1,5 @@
+from app.agents.llm_agent import LLMAgent
 from app.agents.math_agent import MathAgent
-from app.agents.text_agent import TextAgent
 
 
 class Router:
@@ -7,6 +7,6 @@ class Router:
         if isinstance(task, list):
             return MathAgent()
         if isinstance(task, str):
-            return TextAgent()
+            return LLMAgent()
         return None
 
